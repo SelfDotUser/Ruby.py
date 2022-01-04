@@ -23,6 +23,7 @@ import Ruby
 user = Ruby.User("some_user_id", "123456")
 
 # Getting weight data. See below to learn how to use it.
+# If no month is specified, "-" (current month) will be used.
 data = user.get_weight("2021-12")
 ```
 

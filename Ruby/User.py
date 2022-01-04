@@ -11,7 +11,7 @@ class User:
         self.login = Client._login(username, passcode)
         self.base = "https://ruby-weight-management.herokuapp.com"
 
-    def get_weight(self, month):
+    def get_weight(self, month="-"):
         assert type(month) is str, "'month' must be either '-' or in xxxx-xx format."
 
         response = requests.get(f"{self.base}/api/weight/{month}/", auth=self.login)
