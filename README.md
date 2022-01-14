@@ -48,10 +48,9 @@ Here’s an example:
 ```python
 import Ruby
 
-message = Ruby.Client.new_user("username", "passcode")
-print(message)
+user = Ruby.Client.new_user("username", "passcode")
 ```
-The message should print "SUCCESS" or an error message.
+When you create a new user, it returns a `User` so that you can use `user.update_weight()`.
 
 # API Documentation
 Below you will find classes/methods available in Ruby.py.

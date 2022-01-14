@@ -5,6 +5,8 @@ This will provide the login for Basic HTTP authentication.
 """
 import requests
 from requests.auth import HTTPBasicAuth
+from .User import User
+from typing import Optional
 
 
 class Client:
@@ -13,7 +15,7 @@ class Client:
         return HTTPBasicAuth(username, passcode)
 
     @staticmethod
-    def new_user(user_id: str, passcode: int) -> str:
+    def new_user(user_id: str, passcode: int) -> Optional[User]:
         data = {
             "user_id": user_id,
             "passcode": str(passcode)
@@ -21,7 +23,8 @@ class Client:
 
         response = requests.post("https://ruby-weight-management.herokuapp.com/api/new-user/", json=data)
 
-        print(response.text)
-        return response.json()['message']
+        assert "SUCCESS" in response.json()['message'], f"User cannot be created. Here's the server message:\n{response.json()['message']}"
+
+        return User(user_id, passcode)
 
 
